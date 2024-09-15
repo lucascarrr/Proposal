@@ -1,0 +1,24 @@
+% Remove headers and footers
+\pagestyle{plain}
+% Set up two-column layout
+\usepackage{geometry}
+\geometry{twocolumn}
+\usepackage{hyperref}
+\def\sectionautorefname{Section} % needs to be capitalized according to LNCS guidelines
+\def\subsectionautorefname{Subsection} % needs to be capitalized according to LNCS guidelines
+% \usepackage[htt]{hyphenat}
+\usepackage{subcaption}
+\usepackage{amsmath,amsthm}
+\usepackage{nimbusmononarrow}
+\usepackage{MnSymbol}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\settopmatter{printacmref=false}
+\renewcommand\footnotetextcopyrightpermission[1]{}
+\newcommand*{\defcon}{\ensuremath{\mathrel{\medvert\mskip-5.7mu\clipbox{1 0 0 0}{$\sim$}}}}
+\newcommand*{\defent}{\ensuremath{\mathrel{\medvert\mskip-5.7mu\clipbox{1 0 0 0}{$\approx$}}}}
+\newcommand*{\satisfy}{\ensuremath{\mathrel{\medvert\mskip-7mu\clipbox{1 0 0 0}{$\equiv$}}}}

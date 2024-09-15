@@ -1,0 +1,71 @@
+%%% -*-BibTeX-*-
+%%% Do NOT edit. File created by BibTeX with style
+%%% ACM-Reference-Format-Journals [18-Jan-2012].
+
+\begin{thebibliography}{00}
+
+%%% ====================================================================
+%%% NOTE TO THE USER: you can override these defaults by providing
+%%% customized versions of any of these macros before the \bibliography
+%%% command.  Each of them MUST provide its own final punctuation,
+%%% except for \shownote{}, \showDOI{}, and \showURL{}.  The latter two
+%%% do not use final punctuation, in order to avoid confusing it with
+%%% the Web address.
+%%%
+%%% To suppress output of a particular field, define its macro to expand
+%%% to an empty string, or better, \unskip, like this:
+%%%
+%%% \newcommand{\showDOI}[1]{\unskip}   % LaTeX syntax
+%%%
+%%% \def \showDOI #1{\unskip}           % plain TeX syntax
+%%%
+%%% ====================================================================
+
+\ifx \showCODEN    \undefined \def \showCODEN     #1{\unskip}     \fi
+\ifx \showDOI      \undefined \def \showDOI       #1{#1}\fi
+\ifx \showISBNx    \undefined \def \showISBNx     #1{\unskip}     \fi
+\ifx \showISBNxiii \undefined \def \showISBNxiii  #1{\unskip}     \fi
+\ifx \showISSN     \undefined \def \showISSN      #1{\unskip}     \fi
+\ifx \showLCCN     \undefined \def \showLCCN      #1{\unskip}     \fi
+\ifx \shownote     \undefined \def \shownote      #1{#1}          \fi
+\ifx \showarticletitle \undefined \def \showarticletitle #1{#1}   \fi
+\ifx \showURL      \undefined \def \showURL       {\relax}        \fi
+% The following commands are used for tagged output and should be
+% invisible to TeX
+\providecommand\bibfield[2]{#2}
+\providecommand\bibinfo[2]{#2}
+\providecommand\natexlab[1]{#1}
+\providecommand\showeprint[2][]{arXiv:#2}
+
+\bibitem[\protect\citeauthoryear{Castonguay}{Castonguay}{2012}]%
+        {castonguay2012meaning}
+\bibfield{author}{\bibinfo{person}{Charles Castonguay}.} \bibinfo{year}{2012}\natexlab{}.
+\newblock \bibinfo{booktitle}{{\em Meaning and existence in mathematics}}. Vol.~\bibinfo{volume}{9}.
+\newblock \bibinfo{publisher}{Springer Science \& Business Media}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Ganter}{Ganter}{1999}]%
+        {ganter1999formal}
+\bibfield{author}{\bibinfo{person}{B Ganter}.} \bibinfo{year}{1999}\natexlab{}.
+\newblock \bibinfo{title}{Formal Concept Analysis: Mathematical Foundations}.
+\newblock   (\bibinfo{year}{1999}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Ganter, Obiedkov, Rudolph, and Stumme}{Ganter et~al\mbox{.}}{2016}]%
+        {ganter2016conceptual}
+\bibfield{author}{\bibinfo{person}{Bernhard Ganter}, \bibinfo{person}{Sergei Obiedkov}, \bibinfo{person}{Sebastian Rudolph}, {and} \bibinfo{person}{Gerd Stumme}.} \bibinfo{year}{2016}\natexlab{}.
+\newblock \bibinfo{booktitle}{{\em Conceptual exploration}}.
+\newblock \bibinfo{publisher}{Springer}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Rudolph}{Rudolph}{2007}]%
+        {rudolph2007relational}
+\bibfield{author}{\bibinfo{person}{Sebastian Rudolph}.} \bibinfo{year}{2007}\natexlab{}.
+\newblock \bibinfo{booktitle}{{\em Relational exploration. Combining description logics and formal concept analysis for knowledge specification}}.
+\newblock
+
+
+\end{thebibliography}
