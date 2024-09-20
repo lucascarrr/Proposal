@@ -1,10 +1,107 @@
 \section{Background}
 \label{section: background}
-\subsection{Formal Concept analysis}
+\subsection{Formal Concept Analysis}
 \label{subsection: formal concept analysis}
+The starting point of FCA is the \textit{formal context}. A formal context is a tripple consisting of a finite set of objects, a finite set of attributes, and a relation which describes when an object $g$ `has' an attribute $m$.
+%
+\begin{definition}
+    \label{definition: formal context}
+    A \emph{formal context} is a tripple, denoted $\FC$, where $G$ is a finite set of objects, $M$ is a finite set of attributes, and $I \subseteq G\times M$ is an incidence relation on the cartesian product of $G$ and $M$.
+\end{definition}
+%
+For contexts of reasonable size, a cross-table is frequently used as a visual aid. Each row represents an object, and each column an attribute. A `$\times$' is used to indicate where an object has an attribute \cite{ganter1999formal,ganter2016conceptual}. See \autoref{table: formal context} for an example.
+For any subset of objects (attributes) we use a derivation operator to describe the attributes (objects) common to all memberss of that subset. These derivation operators form a antitone Galois connection between the powersets $\mathcal{P}(G)$ and $\mathcal{P}(M)$ \cite{ganter1999formal}.
+%
+\begin{definition}
+    \label{definition: derivation operators}
+    In a context, $\FC$, we define two \emph{derivation operators}, both denoted by $(\cdot)'$, as follows:
+    \[
+        \begin{aligned}
+             & A \subseteq G: & A' & := \{m \in M \mid \forall g \in A: (g,m) \in I\} \\
+             & B \subseteq M: & B' & := \{g \in G \mid \forall m \in B: (g,m) \in I\}
+        \end{aligned}
+    \]
+\end{definition}
+
+In case of a singleton set, $\{g\}$, the braces are omitted. If $g$ is an object, then $g'$ describes the \emph{object intent}; if $g$ is an attribute, $g'$ is the \emph{attribute extent}. A derivation operator can be applied to the result of an earlier derivation operator, this is then referred to as a \emph{double-prime operator}, and expressed as $(\cdot)''$. Any such set is closed, and so each derivation operator describes a closure system on $G$ and $M$, respectively \cite{ganter1999formal,ganter2016conceptual,rudolph2007relational}. As such, the double-prime operator $(\cdot)''$ satisfies:
+% \begin{enumerate}
+% 	\item Monotonocity: if $A_1 \subseteq A_2$ then $A_1'' \subseteq A_2''$
+% 	\item Extensivity: $A \subseteq A''$
+% 	\item Idempotency: $A'' = (A'')''$
+% \end{enumerate}
+\begin{align}
+     & \text{Monotonocity:} \; \text{if } A_1 \subseteq A_2 \text{ then } A_1'' \subseteq A_2'' \\
+     & \text{Extensivity:}  \; A \subseteq A''                                                  \\
+     & \text{Idempotency:}  \; A'' = (A'')''
+\end{align}
+%
+\begin{definition}
+    \label{definition: formal concept}
+    A \emph{formal concept} of a context, $\FC$, is a pair $(A,B)$ where $A\subseteq G$ and $B\subseteq M$ for which $A'=B$ and $B'=A$. Then $A$ is the \emph{concept extent} and $B$ is the \emph{concept intent}.
+    The set of all concepts of a context is given by $\BK$.
+\end{definition}
+%
+There is obvious redundancy in this definition of concepts: if $(A,B)$ is a formal concept, it could equivalently be given by $(A,A')$ or $(B',B)$. Moreover, for an arbitrary set $A$ of objects (attributes), $A'$ defines a concept intent (extent), and $A''$ defines a concept extent (intent) \cite{ganter2016conceptual}.
+%
+\begin{definition}
+    \label{definition: object and attribute concepts}
+    Let $\GMI$ be a formal context, then for every object, $g \in G$, we define a \emph{object concept} as
+    \[\gamma g := (g'',\; g')\]
+    and for each attribute, $m \in M$, we define the \emph{attribute concept} as
+    \[\mu m := (m',\; m'')\]
+\end{definition}
+%
+The idea of sub and super-concepts gives rise to a natural partial order on $\BK$. Specifically, if $(A_1,B_1)$ and $(A_2,B_2)$ are concepts in $\BK$, then $(A_1,B_1)$ is a \emph{sub-concept} of $(A_2,B_2)$ iff $A_1 \subseteq A_2$ (equivalently, $B_2 \subseteq B_1$). Obviously, $(A_2,B_2)$ is respectively a \emph{super-concept}, and we say that $(A_1,B_1) \leq (A_2,B_2)$ \cite{ganter1999formal}. Then, $\BK$ and the relation $\leq$ form a complete lattice called the \emph{concept lattice}. [ link to concept lattice in appendix ]
+
+The concept lattice can be used to read-off correspondencies between sets of attributes - we call these relationships \textit{attribute implications}, which use a fragment of \textit{attribute logic} and can reasonably be thought of as material implications.
+%
+\begin{definition}
+    \label{definition: implication over M}
+    Let $M$ be an arbitrary set. An \emph{implication} over $M$ takes the form $B_1 \rightarrow B_2$ where $B_1, B_2 \subseteq M$. Another set $C \subseteq M$, \emph{respects} the implication if $B_1 \not \subseteq C$ or $B_2 \subseteq C$. Then, $C \vDash B_1 \rightarrow B_2$.
+\end{definition}
+%
+\begin{definition}
+    \label{definition: modelling an implication}
+    For $\FC$ and an implication $i$ over $M$, the implication is \emph{valid} in the formal context iff for every object $g \in G$ it is the case that the object intent, $g'$, respects the implication. Then, $\K \models i$. If $i := B_1 \rightarrow B_2$, then the following are equivalent
+    \begin{align*}
+        \K  \models & B_1 \rightarrow B_2  & \\
+                    & B_1 ' \subseteq B_2' & \\
+                    & B_2 \subseteq B_1''  &
+    \end{align*}
+\end{definition}
+
 
 \subsection{Classical Notions of Consequence}
 \label{subsection: classical notions of consequence}
 
+
+In a classical setting, \emph{logical consequence} describes when knowing one formula, $\alpha$, is sufficient to conclude another, $\beta$ - then $\beta$ is a logical consequence of $\alpha$.
+
+
+In classical logic, the notion of \emph{logical consequence} describes when one formula allows one to conclude another. If $\alpha, \beta \in \mathcal{L}$ are two formulae in the language, then $\alpha \vDash \beta$ iff for every valuation $u \in \mathcal{U}$ if $u \Vdash \alpha$ then $u \Vdash \beta$, equivalently that the models of $\alpha$ are a subset of the models of $\beta$. We can similarly define a notion of \emph{classical entailment} which describes when a formula is a logical consequence of set of formulae, or a knowledge-base.
+%
+\begin{definition}
+    \label{definition: logical consequence}
+    We say that for two formulae, $\alpha, \beta$, in the language $\mathcal{L}$, $\beta$ is a \emph{logical consequence} of $\alpha$, written $\alpha \vDash \beta$ iff for every valuation $u \in \mathcal{U}$ where $u \Vdash \alpha$ then also $u \Vdash \beta$.
+\end{definition}
+%
+\begin{definition}
+    \label{defintion: classical entailment}
+    Given a knowledge-base $\mathcal{K}$ and a formula $\alpha$, the knowledge-base entails $\alpha$, written $\mathcal{K} \models \alpha$, iff every for every valuation $u \in \mathcal{U}$ where $u \Vdash \mathcal{K}$ it is also the case that $u \Vdash \alpha$.
+\end{definition}
+%
+We introduce a consequence operator, $\mathcal{C}n$, where $\mathcal{C}n(\mathcal{K})$ describes a closed-set containing everything that can be entailed from $\mathcal{K}$. With this in mind, any notion of consequence which satisfies the condtions below is referred to as a \emph{Tarskian operation}.
+\begin{enumerate}
+    \item Monotonocity: \textit{if $\mathcal{K} \subseteq \mathcal{K'}$ then $\mathcal{C}n(\mathcal{K}) \subseteq \mathcal{C}n(\mathcal{K'})$}
+    \item Idempotence: $\mathcal{C}n(\mathcal{K}) = \mathcal{C}n(\mathcal{C}n(\mathcal{K}))$
+    \item Inclusion: $\mathcal{K} \subseteq \mathcal{C}n(\mathcal{K})$
+\end{enumerate}
+%
+\emph{Consequence relations} are a more removed way of describing some notion of logical consequence. These relations are a (possibly infinite) set of ordered pairs containing formulae in the language, where the first element is the antecedent and the second element is the consequent. A consequence relation might look like $\{(\alpha_0, \beta_0), \ldots, (\alpha_n, \beta_n)\ldots\}$. The relation does not give a semantic or syntactic notion of consequence. Rather, a consequence relation satisfies certain properties which describe some pattern of reasoning - as such, a consequence relation might be a characterisation of some notion of consequence. Obviously, not all sets of pairs would define a meaningful pattern of reasoning. At a minimum, a meaningful consequence relation, $\Gamma$, should satisfy
+%
+\begin{enumerate}
+    \item Reflexivity: $(\alpha, \alpha) \in \Gamma$
+    \item Cut: \textit{if $(\alpha, \beta \land \gamma) \in \Gamma$ and $(\gamma \land \delta, \mu)\in \Gamma$ then $(\alpha \land \delta, \beta \land \mu)\in \Gamma$}
+\end{enumerate}
 \subsection{Non-monotonic Consequence}
 \label{subsection: non-monotonic consequence}
