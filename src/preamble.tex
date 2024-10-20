@@ -1,27 +1,32 @@
-% Remove headers and footers
-\pagestyle{plain}
-% Set up two-column layout
-\usepackage{geometry}
-\geometry{twocolumn}
+% Package imports
+% \usepackage{parskip}
 \usepackage{hyperref}
-\def\sectionautorefname{Section} % needs to be capitalized according to LNCS guidelines
-\def\subsectionautorefname{Subsection} % needs to be capitalized according to LNCS guidelines
-% \usepackage[htt]{hyphenat}
+\usepackage{amsthm}
+\usepackage[nameinlink,capitalize,noabbrev]{cleveref}
 \usepackage{subcaption}
 \usepackage{tikz}
 \usetikzlibrary{positioning}
+\usepackage[table]{xcolor}
 \usepackage{adjustbox}
-\usepackage{amsmath,amsthm}
 \usepackage{nimbusmononarrow}
-\usepackage{MnSymbol}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
-\usepackage[utf8]{inputenc}
 \usepackage{graphicx}
+\usepackage{stmaryrd}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
-\settopmatter{printacmref=false}
+% Remove copyright permission footnote
 \renewcommand\footnotetextcopyrightpermission[1]{}
+
+% Custom commands (you might want to move these to macros.tex)
 \newcommand*{\defcon}{\ensuremath{\mathrel{\medvert\mskip-5.7mu\clipbox{1 0 0 0}{$\sim$}}}}
 \newcommand*{\defent}{\ensuremath{\mathrel{\medvert\mskip-5.7mu\clipbox{1 0 0 0}{$\approx$}}}}
 \newcommand*{\satisfy}{\ensuremath{\mathrel{\medvert\mskip-7mu\clipbox{1 0 0 0}{$\equiv$}}}}
+
+% ACM-specific settingsa
+\settopmatter{printacmref=false}
+% \setlength{\parindent}{15pt}
+
+% Set column spacing and line thickness to zero
+% \setlength{\tabcolsep}{0pt} % No space between columns
+\setlength{\arrayrulewidth}{-1pt} % No borders between cells

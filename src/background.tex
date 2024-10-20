@@ -1,107 +1,146 @@
 \section{Background}
 \label{section: background}
+
+The proceeding subsections provide an introduction to aspects of FCA, classical logic, and the KLM-framework for non-mononotonic reasoning which are particularly relevant to the scope of this research.
+
 \subsection{Formal Concept Analysis}
 \label{subsection: formal concept analysis}
-The starting point of FCA is the \textit{formal context}. A formal context is a tripple consisting of a finite set of objects, a finite set of attributes, and a relation which describes when an object $g$ `has' an attribute $m$.
+
+The starting point of FCA is the \textit{formal context}. This is a triple consisting of a finite set of objects, a finite set of attributes, and a relation which describes when an object $g$ `has' an attribute $m$.
 %
 \begin{definition}
-    \label{definition: formal context}
-    A \emph{formal context} is a tripple, denoted $\FC$, where $G$ is a finite set of objects, $M$ is a finite set of attributes, and $I \subseteq G\times M$ is an incidence relation on the cartesian product of $G$ and $M$.
+    \label[definition]{definition: formal context}
+    A \emph{formal context} is a triple, $\FC$, where $G$ is a finite set of objects, $M$ is a finite set of attributes, and $I\subseteq G\times M$ is an incidence relation on the Cartesian product of $G$ and $M$.
 \end{definition}
 %
 For contexts of reasonable size, a cross-table is frequently used as a visual aid. Each row represents an object, and each column an attribute. A `$\times$' is used to indicate where an object has an attribute \cite{ganter1999formal,ganter2016conceptual}. See \autoref{table: formal context} for an example.
-For any subset of objects (attributes) we use a derivation operator to describe the attributes (objects) common to all memberss of that subset. These derivation operators form a antitone Galois connection between the powersets $\mathcal{P}(G)$ and $\mathcal{P}(M)$ \cite{ganter1999formal}.
+For any subset of objects (attributes) we use a derivation operator to describe the attributes (objects) common to all members of that subset. These derivation operators form a antitone Galois connection between the power sets $\mathcal{P}(G)$ and $\mathcal{P}(M)$ \cite{ganter1999formal}.
 %
 \begin{definition}
-    \label{definition: derivation operators}
+    \label[definition]{definition: derivation operators}
     In a context, $\FC$, we define two \emph{derivation operators}, both denoted by $(\cdot)'$, as follows:
     \[
         \begin{aligned}
-             & A \subseteq G: & A' & := \{m \in M \mid \forall g \in A: (g,m) \in I\} \\
-             & B \subseteq M: & B' & := \{g \in G \mid \forall m \in B: (g,m) \in I\}
+            A \subseteq G: &  & A' \coloneq \{m \in M \mid \forall g \in A: (g,m) \in I\} \\
+            B \subseteq M: &  & B' \coloneq \{g \in G \mid \forall m \in B: (g,m) \in I\}
         \end{aligned}
     \]
 \end{definition}
-
-In case of a singleton set, $\{g\}$, the braces are omitted. If $g$ is an object, then $g'$ describes the \emph{object intent}; if $g$ is an attribute, $g'$ is the \emph{attribute extent}. A derivation operator can be applied to the result of an earlier derivation operator, this is then referred to as a \emph{double-prime operator}, and expressed as $(\cdot)''$. Any such set is closed, and so each derivation operator describes a closure system on $G$ and $M$, respectively \cite{ganter1999formal,ganter2016conceptual,rudolph2007relational}. As such, the double-prime operator $(\cdot)''$ satisfies:
-% \begin{enumerate}
-% 	\item Monotonocity: if $A_1 \subseteq A_2$ then $A_1'' \subseteq A_2''$
-% 	\item Extensivity: $A \subseteq A''$
-% 	\item Idempotency: $A'' = (A'')''$
-% \end{enumerate}
-\begin{align}
-     & \text{Monotonocity:} \; \text{if } A_1 \subseteq A_2 \text{ then } A_1'' \subseteq A_2'' \\
-     & \text{Extensivity:}  \; A \subseteq A''                                                  \\
-     & \text{Idempotency:}  \; A'' = (A'')''
-\end{align}
+%
+In case of a singleton set, $\{g\}$, the braces are omitted. If $g$ is an object, then $g'$ describes the \emph{object intent}; if $g$ is an attribute, $g'$ is the \emph{attribute extent}. A derivation operator can be applied to the result of an earlier derivation operator, this is then referred to as a \emph{double-prime operator}, and expressed as $(\cdot)''$.
+Any set derived from a double-prime operator is closed, and so each derivation operator describes a closure system on $G$ and $M$, respectively \cite{ganter1999formal,ganter2016conceptual,rudolph2007relational}. As such, the double-prime operator $(\cdot)''$ satisfies:
+%
+\[
+    \begin{aligned}
+         & \text{Monotonocity:} & \; \text{if } A_1 \subseteq A_2 \text{ then } A_1'' \subseteq A_2'' \\
+         & \text{Idempotency:}  & \; A'' = (A'')''                                                    \\
+         & \text{Extensivity:}  & \; A \subseteq A''
+    \end{aligned}
+\]
 %
 \begin{definition}
-    \label{definition: formal concept}
+    \label[definition]{definition: formal concept}
     A \emph{formal concept} of a context, $\FC$, is a pair $(A,B)$ where $A\subseteq G$ and $B\subseteq M$ for which $A'=B$ and $B'=A$. Then $A$ is the \emph{concept extent} and $B$ is the \emph{concept intent}.
     The set of all concepts of a context is given by $\BK$.
 \end{definition}
 %
-There is obvious redundancy in this definition of concepts: if $(A,B)$ is a formal concept, it could equivalently be given by $(A,A')$ or $(B',B)$. Moreover, for an arbitrary set $A$ of objects (attributes), $A'$ defines a concept intent (extent), and $A''$ defines a concept extent (intent) \cite{ganter2016conceptual}.
+There is obvious redundancy in this definition of concepts: if $(A,B)$ is a formal concept, it could equivalently be given by $(A,A')$ or $(B',B)$. Moreover, for an arbitrary set $A$ of objects (\textit{resp.} attributes), $A'$ defines a concept intent (\textit{resp.} extent), and $A''$ defines a concept extent (\textit{resp.} intent) \cite{ganter2016conceptual}.
 %
 \begin{definition}
-    \label{definition: object and attribute concepts}
+    \label[definition]{definition: object and attribute concepts}
     Let $\GMI$ be a formal context, then for every object, $g \in G$, we define a \emph{object concept} as
-    \[\gamma g := (g'',\; g')\]
+    \[\gamma g \coloneq (g'',\; g')\]
     and for each attribute, $m \in M$, we define the \emph{attribute concept} as
-    \[\mu m := (m',\; m'')\]
+    \[\mu m \coloneq (m',\; m'')\]
 \end{definition}
 %
-The idea of sub and super-concepts gives rise to a natural partial order on $\BK$. Specifically, if $(A_1,B_1)$ and $(A_2,B_2)$ are concepts in $\BK$, then $(A_1,B_1)$ is a \emph{sub-concept} of $(A_2,B_2)$ iff $A_1 \subseteq A_2$ (equivalently, $B_2 \subseteq B_1$). Obviously, $(A_2,B_2)$ is respectively a \emph{super-concept}, and we say that $(A_1,B_1) \leq (A_2,B_2)$ \cite{ganter1999formal}. Then, $\BK$ and the relation $\leq$ form a complete lattice called the \emph{concept lattice}. [ link to concept lattice in appendix ]
+The idea of sub and super-concepts gives rise to a natural partial order on $\BK$. Specifically, if $(A_1,B_1)$ and $(A_2,B_2)$ are concepts in $\BK$, then $(A_1,B_1)$ is a \emph{sub-concept} of $(A_2,B_2)$ iff $A_1 \subseteq A_2$ (equivalently, $B_2 \subseteq B_1$). Respectively, $(A_2,B_2)$ would be a \emph{super-concept} of $(A_1,B_1)$ and we say that $(A_1,B_1) \leq (A_2,B_2)$ \cite{ganter1999formal}. Then, $\BK$ and the relation $\leq$ form a complete lattice called the \emph{concept lattice}. [ link to concept lattice in appendix ]
 
-The concept lattice can be used to read-off correspondencies between sets of attributes - we call these relationships \textit{attribute implications}, which use a fragment of \textit{attribute logic} and can reasonably be thought of as material implications.
+Previously, it was mentioned that contexts of a reasonable size have a tidy representation in the form of a cross-table. In case of larger contexts, the concept lattice can instead be inferred from \textit{attribute implications} \cite{ganter1999formal,ganter2016conceptual}.
 %
 \begin{definition}
-    \label{definition: implication over M}
-    Let $M$ be an arbitrary set. An \emph{implication} over $M$ takes the form $B_1 \rightarrow B_2$ where $B_1, B_2 \subseteq M$. Another set $C \subseteq M$, \emph{respects} the implication if $B_1 \not \subseteq C$ or $B_2 \subseteq C$. Then, $C \vDash B_1 \rightarrow B_2$.
+    \label[definition]{definition: implication over M}
+    Let $M$ be an arbitrary attribute-set. An \emph{implication} over $M$ takes the form $B_1 \rightarrow B_2$ where $B_1, B_2 \subseteq M$. Another set $C \subseteq M$, \emph{respects} the implication iff $B_1 \not \subseteq C$ or $B_2 \subseteq C$. Then, $C \vDash B_1 \rightarrow B_2$. $C$ \emph{respects a set} of $\mathcal{L}$ implications if it respects every implication in $\mathcal{L}$.
 \end{definition}
+%
+\textit{Respecting} an implication can be generalised to the notion of \textit{validity} \wrt a formal context.
 %
 \begin{definition}
-    \label{definition: modelling an implication}
-    For $\FC$ and an implication $i$ over $M$, the implication is \emph{valid} in the formal context iff for every object $g \in G$ it is the case that the object intent, $g'$, respects the implication. Then, $\K \models i$. If $i := B_1 \rightarrow B_2$, then the following are equivalent
-    \begin{align*}
-        \K  \models & B_1 \rightarrow B_2  & \\
-                    & B_1 ' \subseteq B_2' & \\
-                    & B_2 \subseteq B_1''  &
-    \end{align*}
+    \label[definition]{definition: modelling an implication}
+    For a formal context $\FC$, and an implication $B_1 \rightarrow B_2$ over $M$, the implication is \emph{valid} in the formal context ($\K \models B_1 \rightarrow B_2$) iff for every object $g \in G$, it is the case that the object intent $g'$ respects the implication. Then, the following are equivalent:
+    \[
+        \begin{aligned}
+            \K  \models \; & B_1 \rightarrow B_2  & \\
+                           & B_1 ' \subseteq B_2' & \\
+                           & B_2 \subseteq B_1''  &
+        \end{aligned}
+    \]
 \end{definition}
-
-
-\subsection{Classical Notions of Consequence}
-\label{subsection: classical notions of consequence}
-
-
-In a classical setting, \emph{logical consequence} describes when knowing one formula, $\alpha$, is sufficient to conclude another, $\beta$ - then $\beta$ is a logical consequence of $\alpha$.
-
-
-In classical logic, the notion of \emph{logical consequence} describes when one formula allows one to conclude another. If $\alpha, \beta \in \mathcal{L}$ are two formulae in the language, then $\alpha \vDash \beta$ iff for every valuation $u \in \mathcal{U}$ if $u \Vdash \alpha$ then $u \Vdash \beta$, equivalently that the models of $\alpha$ are a subset of the models of $\beta$. We can similarly define a notion of \emph{classical entailment} which describes when a formula is a logical consequence of set of formulae, or a knowledge-base.
 %
+If $\mathcal{L}$ is the set of all implications valid in a formal context, $\FC$, then the concept intents can be given by $\{B \subseteq M \mid B \models \mathcal{L}\}$.
+%
+% \subsection{Classical Notions of Consequence}
+% \label{subsection: classical notions of consequence}
+
+% In classical logic the idea of \textit{logical consequence} describes how it may be determined that one formula follows (logically) from another. Informally, this provides a method of saying, ``given that we know $x$, we can infer $y$''.
+% %
+% \begin{definition}
+%     \label[definition]{definition: logical consequence}
+%     For two formulae $\alpha, \beta$ in the language $\mathcal{L}$, $\beta$ is a \emph{logical consequence} of $\alpha$ iff for every $u \in \mathcal{U}$ it is the case that if $u \Vdash \alpha$ then $u \Vdash \beta$. This is then expressed as ($\alpha \vDash \beta$).
+% \end{definition}
+
+% This definition of logical consequence can be raised to a notion of entailment, which simply extends the predicate: instead of saying that $\beta$ is a logical consequence of another formula, $\alpha$, entailment talks about $\beta$ being a consequence of a set of formulae.
+
+% \begin{definition}
+%     \label[definition]{definition: classical entailment}
+%     For a set of formulae, $\Gamma$, and a single formula $\beta$ in the language $\mathcal{L}$, we say that $\Gamma$ \emph{entails} $\beta$ iff for every $u \in \mathcal{U}$ if $u \Vdash \Gamma$ then also $u \Vdash \beta$. This entailment is denoted $\Gamma \models \alpha$.
+% \end{definition}
+% %
+% These definitions correspond to a Tarskian view of logical consequence \cite{gmez-torrente1996tarski,monk1986contributions}. However, they concern only atomic instances of logical consequence. Of course, it would be desirable to use one logical consequence in support of another. To this end, the abstract notion of a consequence operator is introduced:
+% %
+% \begin{definition}
+%     \label[definition]{definition: consequence operator}
+%     A \emph{consequence operator}  is a function which maps a set of formulae to the set of formulae that are logically entailed.
+%     \[\mathcal{C}n :  2^\mathcal{L} \mapsto  2^\mathcal{L} \]
+% \end{definition}
+% %
+% If $\mathcal{C}n$ is a Tarskian consequence operator, then it satisfies
+% \begin{align}
+%      & \text{Monotonocity:} & \; \textit{if } \; \Gamma \subseteq \Gamma'  \; \text{then} \; \mathcal{C}n(\Gamma) \subseteq \mathcal{C}n(\Gamma' ) \\
+%      & \text{Idempotence:}  & \; \mathcal{C}n(\Gamma) = \mathcal{C}n(\mathcal{C}n(\Gamma))                                                         \\
+%      & \text{Inclusion:}    & \; \Gamma \subseteq \mathcal{C}n(\Gamma)
+% \end{align}
+
+\subsection{KLM-Style Non-monotonic Reasoning}
+\label{subsection: non-monotonic reasoning}
+
+In \cite{shoham1987nonmonotonic,shoham1987reasoning}, Shoham developed a semantic framework for introducing non-monotonicity, which he called \textit{preferential reasoning}. The style of reasoning is based on the idea that an ordering can be imposed on the valuations of a knoweldege base, expressesing that some valuations are preferred to others.
+%
+In the classical setting, $\alpha \vDash \beta$ means that all models of $\alpha$ are also models of $\beta$. A corrolary of this is that $\alpha \wedge \gamma \vDash \beta$, which implies monotonicity. Under preferential reasoning, $\alpha \vDash_\sqsubset \beta$ does not enforce the preferred models of $\alpha \wedge \gamma$ to be models of $\beta$, thus constituting a non-monotonic consequence \cite{shoham1987nonmonotonic}.
+
+Independently, Kraus, Lehmann, and Magidor introduced systems of non-monotonic reasoning as consequence relations, these have since been unified under the \textit{KLM framework}. The central contribution of \cite{kraus1990nonmonotonic} is \textit{system P}: a preferential consequence relation who's semantics are a variation of Shoham's preferential reasoning. A preferential consequence relation satisfies certain properties, called the \textit{KLM postulates}.\footnote{Further discussion of these postulates can be found in \cite{kraus1990nonmonotonic}} Of particular interest is \textit{cautious monotonicity}, which stipulates that new knoweldege—which could already be inferred—cannot invalidate previous conclusions. Put plainly, only genuinely new information should cause retraction of existing information \cite{kraus1990nonmonotonic,kaliski2020overview}.
+
+Later, Lehmann and Magidor \cite{lehmann1994what} introduced the stronger  \textit{rational consequence relation}, which  satisfies all the properties of \textit{P}, with the addition of \textit{rational monotonicity}. Rational monotonicity says that new information which is consistent with existing knoweldege should not lead to the retraction of prior inferences. \textit{Ranked interpretations} provide a semantic characterisation of a rational consequence relation.
+
 \begin{definition}
-    \label{definition: logical consequence}
-    We say that for two formulae, $\alpha, \beta$, in the language $\mathcal{L}$, $\beta$ is a \emph{logical consequence} of $\alpha$, written $\alpha \vDash \beta$ iff for every valuation $u \in \mathcal{U}$ where $u \Vdash \alpha$ then also $u \Vdash \beta$.
+    \label[definition]{definition: ranked interpretations}
+    A \emph{ranked intereptation} is a function $\mathsf{R} : \mathcal{U} \mapsto \mathcal{N} \cup \infty$ \st for every $n \in \mathcal{N}$ there exists a $u \in \mathcal{U}$ such that $\mathsf{R}(u) = n$. Then, there exists $u' \in \mathcal{U}$ \st $\mathsf{R}(u') = n'$ with $0 \leq n' < n$
 \end{definition}
-%
-\begin{definition}
-    \label{defintion: classical entailment}
-    Given a knowledge-base $\mathcal{K}$ and a formula $\alpha$, the knowledge-base entails $\alpha$, written $\mathcal{K} \models \alpha$, iff every for every valuation $u \in \mathcal{U}$ where $u \Vdash \mathcal{K}$ it is also the case that $u \Vdash \alpha$.
-\end{definition}
-%
-We introduce a consequence operator, $\mathcal{C}n$, where $\mathcal{C}n(\mathcal{K})$ describes a closed-set containing everything that can be entailed from $\mathcal{K}$. With this in mind, any notion of consequence which satisfies the condtions below is referred to as a \emph{Tarskian operation}.
-\begin{enumerate}
-    \item Monotonocity: \textit{if $\mathcal{K} \subseteq \mathcal{K'}$ then $\mathcal{C}n(\mathcal{K}) \subseteq \mathcal{C}n(\mathcal{K'})$}
-    \item Idempotence: $\mathcal{C}n(\mathcal{K}) = \mathcal{C}n(\mathcal{C}n(\mathcal{K}))$
-    \item Inclusion: $\mathcal{K} \subseteq \mathcal{C}n(\mathcal{K})$
-\end{enumerate}
-%
-\emph{Consequence relations} are a more removed way of describing some notion of logical consequence. These relations are a (possibly infinite) set of ordered pairs containing formulae in the language, where the first element is the antecedent and the second element is the consequent. A consequence relation might look like $\{(\alpha_0, \beta_0), \ldots, (\alpha_n, \beta_n)\ldots\}$. The relation does not give a semantic or syntactic notion of consequence. Rather, a consequence relation satisfies certain properties which describe some pattern of reasoning - as such, a consequence relation might be a characterisation of some notion of consequence. Obviously, not all sets of pairs would define a meaningful pattern of reasoning. At a minimum, a meaningful consequence relation, $\Gamma$, should satisfy
-%
-\begin{enumerate}
-    \item Reflexivity: $(\alpha, \alpha) \in \Gamma$
-    \item Cut: \textit{if $(\alpha, \beta \land \gamma) \in \Gamma$ and $(\gamma \land \delta, \mu)\in \Gamma$ then $(\alpha \land \delta, \beta \land \mu)\in \Gamma$}
-\end{enumerate}
-\subsection{Non-monotonic Consequence}
-\label{subsection: non-monotonic consequence}
+
+Following the intuition of preferential reasoning, for two valuations, $v,v'$, $v$ is regarded as being representative of a more typical (i.e., preferable, less exceptional) state of affairs if $\mathsf{R}(v) < \mathsf{R}(v')$ \cite{lehmann1994what}. A ranked interpretation, $\mathsf{R}$, defines a rational consequence relation $\twiddle_\mathsf{R}$. For $\alpha \twiddle_\mathsf{R} \beta$, we define $\llbracket \alpha \rrbracket^\mathsf{R} \coloneq \{u \in \mathcal{U} \mid u \Vdash \alpha\}$. Then, the conditional holds iff for all minimal valuations $v \in \llbracket \alpha \rrbracket^\mathsf{R}$, $v \Vdash \beta$.
+
+What remains is to describe a process of non-monotonic entailment which is consistent with pattern of reasoning described by rational consequence relations.
+
+
+% For a ranked intereptation $\mathsf{R}$, $\twiddle_\mathsf{R}$ is a rational consequence relation where $\alpha \twiddle_\mathsf{R} \beta$ iff for all minimal valuations which satisfy $\alpha$, $\beta$ is also satisfied.
+
+% Classical reasoning is performed under the confines  of monotonicity. An effect being that once a valid inference is made, it cannot later be retracted. It is quite obvious that human-level reasoning, at the very least, does not abide by this property: frequently decisions are made, with incomplete information, that we might feel uncomfortable with if there was no option to change our minds later on. Another argument against monotonicity posits that it is useful to be able to make general statements—exceptions to which we may be well aware of—which correspond to a frequent state of affairs.
+
+% For example, when teaching a young child about vertebrates, one usually describes mammals as vertebrates that give birth to live young, and that reptiles lay eggs. Platypuses and Jackon's chameleons are exceptions to these rules, the argument, however, is that they should not cause abandon of the general principle.
+
+% These issues, designated as the \textit{extended prediction} and \textit{qualification} problem(s), respectively, have lead to investigation of \textit{non-mononotonic} reasoning systems \cite{shoham1987reasoning}. Of particular interest to us is Shoaham's \textit{preferential} reasoning, introduced in \cite{shoham1987reasoning,shoham1987nonmonotonic}.
+
+% \subsubsection{Preferential Reasoning}
+% \label{subsubsection: preferential reasoning}
+
+% Preferential reasoning has a clear intuition, relying on the notion that certain \textit{worlds} are preferred (or, more typical) to others \cite{shoham1987nonmonotonic,shoham1987reasoning}. One might, for example, argue that a world in which pigs fly is worthy of less consideration than one where they do not. The logical consequence introduced in \cref{definition: logical consequence} can redefined to take into account this preference: for two formulae, $\alpha, \beta$, $\beta$ is a preferential consequence of $\alpha$ when $\beta$ is true in the most preferred worlds where $\alpha$ is true.
