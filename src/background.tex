@@ -1,7 +1,7 @@
 \section{Background}
 \label{section: background}
 
-The proceeding subsections provide an introduction to aspects of FCA, classical logic, and the KLM-framework for non-mononotonic reasoning which are particularly relevant to the scope of this research.
+The proceeding subsections provide an introduction to aspects of FCA, classical logic, and the KLM-framework for non-monotonic reasoning which are particularly relevant to the scope of this research.
 
 \subsection{Formal Concept Analysis}
 \label{subsection: formal concept analysis}
@@ -10,11 +10,11 @@ The starting point of FCA is the \textit{formal context}. This is a triple consi
 %
 \begin{definition}
     \label[definition]{definition: formal context}
-    A \emph{formal context} is a triple, $\FC$, where $G$ is a finite set of objects, $M$ is a finite set of attributes, and $I\subseteq G\times M$ is an incidence relation on the Cartesian product of $G$ and $M$.
+    A \emph{formal context} is a triple, $\FC$, where $G$ is a finite set of objects, $M$ is a finite set of attributes, and $I\subseteq G\times M$ is an incidence relation such that for an object $g$ and attribute $m$, $(g,m) \in I$ is interpreted as  $g$ \textit{having} $m$, and $(g,m) \not \in I$ as $g$ having $\neg m$.
 \end{definition}
 %
 For contexts of reasonable size, a cross-table is frequently used as a visual aid. Each row represents an object, and each column an attribute. A `$\times$' is used to indicate where an object has an attribute \cite{ganter1999formal,ganter2016conceptual}. See \autoref{table: formal context} for an example.
-For any subset of objects (attributes) we use a derivation operator to describe the attributes (objects) common to all members of that subset. These derivation operators form a antitone Galois connection between the power sets $\mathcal{P}(G)$ and $\mathcal{P}(M)$ \cite{ganter1999formal}.
+For any subset of objects (attributes) we use a derivation operator to describe the attributes (objects) common to all members of that subset. These derivation operators form a anti-tone Galois connection between the power sets $\mathcal{P}(G)$ and $\mathcal{P}(M)$ \cite{ganter1999formal}.
 %
 \begin{definition}
     \label[definition]{definition: derivation operators}
@@ -40,7 +40,7 @@ Any set derived from a double-prime operator is closed, and so each derivation o
 %
 \begin{definition}
     \label[definition]{definition: formal concept}
-    A \emph{formal concept} of a context, $\FC$, is a pair $(A,B)$ where $A\subseteq G$ and $B\subseteq M$ for which $A'=B$ and $B'=A$. Then $A$ is the \emph{concept extent} and $B$ is the \emph{concept intent}.
+    A \emph{formal concept} of a context, $\FC$, is a pair, $(A,B)$, with $A\subseteq G$ and $B\subseteq M$ and where $A'=B$ and $B'=A$. Then $A$ is the \emph{concept extent} and $B$ is the \emph{concept intent}.
     The set of all concepts of a context is given by $\BK$.
 \end{definition}
 %
@@ -114,17 +114,18 @@ If $\mathcal{L}$ is the set of all implications valid in a formal context, $\FC$
 \subsection{KLM-Style Non-monotonic Reasoning}
 \label{subsection: non-monotonic reasoning}
 
-In \cite{shoham1987nonmonotonic,shoham1987reasoning}, Shoham developed a semantic framework for introducing non-monotonicity, which he called \textit{preferential reasoning}. The style of reasoning is based on the idea that an ordering can be imposed on the valuations of a knoweldege base, expressesing that some valuations are preferred to others.
+In \cite{shoham1987nonmonotonic,shoham1987reasoning}, Shoham developed a semantic framework for introducing non-monotonicity, which he called \textit{preferential reasoning}. The style of reasoning is based on the idea that an ordering can be imposed on the valuations of a knowledge base, expressing that some valuations are preferred to others. One might, for example, argue that a world in which pigs fly is worthy of less consideration than one where they do not.
+
 %
-In the classical setting, $\alpha \vDash \beta$ means that all models of $\alpha$ are also models of $\beta$. A corrolary of this is that $\alpha \wedge \gamma \vDash \beta$, which implies monotonicity. Under preferential reasoning, $\alpha \vDash_\sqsubset \beta$ does not enforce the preferred models of $\alpha \wedge \gamma$ to be models of $\beta$, thus constituting a non-monotonic consequence \cite{shoham1987nonmonotonic}.
+In the classical setting, $\alpha \vDash \beta$ means that all models of $\alpha$ are also models of $\beta$. A corollary of this is that $\alpha \wedge \gamma \vDash \beta$, which implies monotonicity. Under preferential reasoning, $\alpha \vDash_\sqsubset \beta$ does not enforce the preferred models of $\alpha \wedge \gamma$ to be models of $\beta$, thus constituting a non-monotonic consequence \cite{shoham1987nonmonotonic}.
 
-Independently, Kraus, Lehmann, and Magidor introduced systems of non-monotonic reasoning as consequence relations, these have since been unified under the \textit{KLM framework}. The central contribution of \cite{kraus1990nonmonotonic} is \textit{system P}: a preferential consequence relation who's semantics are a variation of Shoham's preferential reasoning. A preferential consequence relation satisfies certain properties, called the \textit{KLM postulates}.\footnote{Further discussion of these postulates can be found in \cite{kraus1990nonmonotonic}} Of particular interest is \textit{cautious monotonicity}, which stipulates that new knoweldege—which could already be inferred—cannot invalidate previous conclusions. Put plainly, only genuinely new information should cause retraction of existing information \cite{kraus1990nonmonotonic,kaliski2020overview}.
+Independently, Kraus, Lehmann, and Magidor introduced systems of non-monotonic reasoning as consequence relations, these have since been unified under the \textit{KLM framework}. The central contribution of \cite{kraus1990nonmonotonic} is \textit{system P}: a preferential consequence relation who's semantics are a variation of Shoham's preferential reasoning. A preferential consequence relation satisfies certain properties, called the \textit{KLM postulates}.\footnote{Further discussion of these postulates can be found in \cite{kraus1990nonmonotonic}} Of particular interest is \textit{cautious monotonicity}, which stipulates that new knowledge—which could already be inferred—cannot invalidate previous conclusions. Put plainly, only genuinely new information should cause retraction of existing information \cite{kraus1990nonmonotonic,kaliski2020overview}.
 
-Later, Lehmann and Magidor \cite{lehmann1994what} introduced the stronger  \textit{rational consequence relation}, which  satisfies all the properties of \textit{P}, with the addition of \textit{rational monotonicity}. Rational monotonicity says that new information which is consistent with existing knoweldege should not lead to the retraction of prior inferences. \textit{Ranked interpretations} provide a semantic characterisation of a rational consequence relation.
+Later, Lehmann and Magidor \cite{lehmann1994what} introduced the stronger  \textit{rational consequence relation}, which  satisfies all the properties of \textit{P} and an additional property: \textit{rational monotonicity}. Rational monotonicity says that new information which is consistent with existing knowledge should not lead to the retraction of prior inferences. \textit{Ranked interpretations} provide a semantic characterisation of a rational consequence relation.
 
 \begin{definition}
     \label[definition]{definition: ranked interpretations}
-    A \emph{ranked intereptation} is a function $\mathsf{R} : \mathcal{U} \mapsto \mathcal{N} \cup \infty$ \st for every $n \in \mathcal{N}$ there exists a $u \in \mathcal{U}$ such that $\mathsf{R}(u) = n$. Then, there exists $u' \in \mathcal{U}$ \st $\mathsf{R}(u') = n'$ with $0 \leq n' < n$
+    A \emph{ranked interpretation} is a function $\mathsf{R} : \mathcal{U} \mapsto \mathcal{N} \cup \infty$ \st for every $n \in \mathcal{N}$ there exists a $u \in \mathcal{U}$ such that $\mathsf{R}(u) = n$. Then, there exists $u' \in \mathcal{U}$ \st $\mathsf{R}(u') = n'$ with $0 \leq n' < n$
 \end{definition}
 
 Following the intuition of preferential reasoning, for two valuations, $v,v'$, $v$ is regarded as being representative of a more typical (i.e., preferable, less exceptional) state of affairs if $\mathsf{R}(v) < \mathsf{R}(v')$ \cite{lehmann1994what}. A ranked interpretation, $\mathsf{R}$, defines a rational consequence relation $\twiddle_\mathsf{R}$. For $\alpha \twiddle_\mathsf{R} \beta$, we define $\llbracket \alpha \rrbracket^\mathsf{R} \coloneq \{u \in \mathcal{U} \mid u \Vdash \alpha\}$. Then, the conditional holds iff for all minimal valuations $v \in \llbracket \alpha \rrbracket^\mathsf{R}$, $v \Vdash \beta$.

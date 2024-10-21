@@ -5,10 +5,14 @@ Formal concept analysis (FCA) provides a framework, grounded in lattice theory, 
 
 Formal concept analysis---which adopts this view of concepts---introduces a \textit{formal context} as the structure of data. This is a triple consisting of a finite set of objects $G$, attributes $M$, and a binary relation, $I \subseteq G\times M$, which indicates that a particular object has a respective property \cite{ganter1999formal,ganter2016conceptual}. A \textit{formal concept} is a pair, made up of the formal concept extension and intension, respectively. The set of all concepts, when ordered by the \textit{sub/super-concept} relation, form the \textit{concept lattice} used for analysis.
 
+Another important topic in FCA is the discovery of \textit{implications} that pertain to, or are \textit{respected} by, a context \cite{rudolph2007relational,ganter1999formal}. Implications are used to express correspondence between (sets of) attributes. The notion of an implication being \textit{valid} in a context is analogous to that of \textit{entailment} in classical logic \cite{ganter2016conceptual}. As such, \textit{validity} describes a monotonic notion of consequence.
 
-Another important topic in FCA is the discovery of \textit{implications} that pertain to, or are \textit{respected} by, a context \cite{rudolph2007relational,ganter1999formal}. Implications are used to express correspondence between (sets) of attributes. The notion of a context \textit{respecting} an attribute implication is analogous to that of \textit{entailment} in classical logic \cite{ganter2016conceptual}. As such, \textit{respecting} describes a monotonic notion of consequence.
+The property of monotonicity in the logical underlying FCA means that it is ill-suited to reason about concepts with \textit{exceptional members}, or \textit{defeasible} implications.
 
 Discussion and work on non-monotonic propositional, first-order, and description logic is a well established topic in artificial intelligence, \cite{ferguson2003monotonicity,giordano2015semantic,kraus1990nonmonotonic,lehmann1994what,shoham1987nonmonotonic}. However, there does not appear to be any effort to introduce this expressivity to the attribute logic of FCA.
+
+
+The rest of this proposal is structured as follows: \cref{section: background} is devoted to providing a brief introduction to both FCA (\cref{subsection: formal concept analysis}) and KLM-style non-monotonic reasoning (\cref{subsection: non-monotonic reasoning}). \cref{section: motivation} then presents arguments in favour of introducing non-monotonicity into FCA. In turn, \cref{section: research objectives} clarifies the previous section, explaining the current view of how this might be achieved.
 
 % That is not to say that increasing the expressivity of FCA's attribute logic would not be beneficial: association rules are a fairly blunt way of gaining some non-monotonicty in FCA. However, they acquire meaning through majority rule - where we would like something more precise.
 
