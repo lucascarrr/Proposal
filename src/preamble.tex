@@ -1,8 +1,9 @@
 % Package imports
 \usepackage{parskip}
-\usepackage{hyperref}
+\usepackage{balance}
+\usepackage{tabularx}
+\usepackage{ragged2e}
 \usepackage{amsthm}
-\usepackage[nameinlink,capitalize,noabbrev]{cleveref}
 \usepackage{subcaption}
 \usepackage{tikz}
 \usetikzlibrary{positioning}
@@ -15,6 +16,8 @@
 \usepackage{stmaryrd}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
+\usepackage{hyperref}
+\usepackage[nameinlink,capitalize,noabbrev]{cleveref}
 % Remove copyright permission footnote
 \renewcommand\footnotetextcopyrightpermission[1]{}
 
@@ -29,4 +32,5 @@
 
 % Set column spacing and line thickness to zero
 % \setlength{\tabcolsep}{0pt} % No space between columns
-\setlength{\arrayrulewidth}{-1pt} % No borders between cells
+% \setlength{\arrayrulewidth}{-1pt} % No borders between cells
+\setlength{\arrayrulewidth}{0.4pt} % Standard line thickness

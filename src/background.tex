@@ -1,7 +1,7 @@
 \section{Background}
 \label{section: background}
 
-The proceeding subsections provide an introduction to aspects of FCA, classical logic, and the KLM-framework for non-monotonic reasoning which are particularly relevant to the scope of this research.
+The proceeding subsections provide an introduction to aspects of FCA and the KLM-framework for non-monotonic reasoning, which are particularly relevant to the scope of this research.
 
 \subsection{Formal Concept Analysis}
 \label{subsection: formal concept analysis}
@@ -10,11 +10,11 @@ The starting point of FCA is the \textit{formal context}. This is a triple consi
 %
 \begin{definition}
     \label[definition]{definition: formal context}
-    A \emph{formal context} is a triple, $\FC$, where $G$ is a finite set of objects, $M$ is a finite set of attributes, and $I\subseteq G\times M$ is an incidence relation such that for an object $g$ and attribute $m$, $(g,m) \in I$ is interpreted as  $g$ \textit{having} $m$, and $(g,m) \not \in I$ as $g$ having $\neg m$.
+    A \emph{formal context} is a triple, $\FC$, where $G$ is a finite set of objects, $M$ is a finite set of attributes, and $I\subseteq G\times M$ is an incidence relation such that for an object $g$ and attribute $m$, $(g,m) \in I$ is interpreted as  $g$ \textit{having} $m$.
 \end{definition}
 %
 For contexts of reasonable size, a cross-table is frequently used as a visual aid. Each row represents an object, and each column an attribute. A `$\times$' is used to indicate where an object has an attribute \cite{ganter1999formal,ganter2016conceptual}. See \autoref{table: formal context} for an example.
-For any subset of objects (attributes) we use a derivation operator to describe the attributes (objects) common to all members of that subset. These derivation operators form a anti-tone Galois connection between the power sets $\mathcal{P}(G)$ and $\mathcal{P}(M)$ \cite{ganter1999formal}.
+For any subset of objects (\textit{resp.} attributes) we use a derivation operator to describe the attributes (\textit{resp.} objects) common to all members of that subset. These derivation operators form a anti-tone Galois connection between the power sets $\mathcal{P}(G)$ and $\mathcal{P}(M)$ \cite{ganter1999formal}.
 %
 \begin{definition}
     \label[definition]{definition: derivation operators}
@@ -32,7 +32,7 @@ Any set derived from a double-prime operator is closed, and so each derivation o
 %
 \[
     \begin{aligned}
-         & \text{Monotonocity:} & \; \text{if } A_1 \subseteq A_2 \text{ then } A_1'' \subseteq A_2'' \\
+         & \text{Monotonicity:} & \; \text{if } A_1 \subseteq A_2 \text{ then } A_1'' \subseteq A_2'' \\
          & \text{Idempotency:}  & \; A'' = (A'')''                                                    \\
          & \text{Extensivity:}  & \; A \subseteq A''
     \end{aligned}
@@ -44,7 +44,7 @@ Any set derived from a double-prime operator is closed, and so each derivation o
     The set of all concepts of a context is given by $\BK$.
 \end{definition}
 %
-There is obvious redundancy in this definition of concepts: if $(A,B)$ is a formal concept, it could equivalently be given by $(A,A')$ or $(B',B)$. Moreover, for an arbitrary set $A$ of objects (\textit{resp.} attributes), $A'$ defines a concept intent (\textit{resp.} extent), and $A''$ defines a concept extent (\textit{resp.} intent) \cite{ganter2016conceptual}.
+There is obvious redundancy in this definition of concepts: if $(A,B)$ is a formal concept, it could be expressed equivalently as $(A,A')$ or $(B',B)$. Moreover, for an arbitrary set $A$ of objects (\textit{resp.} attributes), $A'$ defines a concept intent (\textit{resp.} extent), and $A''$ defines a concept extent (\textit{resp.} intent) \cite{ganter2016conceptual}.
 %
 \begin{definition}
     \label[definition]{definition: object and attribute concepts}
@@ -54,13 +54,13 @@ There is obvious redundancy in this definition of concepts: if $(A,B)$ is a form
     \[\mu m \coloneq (m',\; m'')\]
 \end{definition}
 %
-The idea of sub and super-concepts gives rise to a natural partial order on $\BK$. Specifically, if $(A_1,B_1)$ and $(A_2,B_2)$ are concepts in $\BK$, then $(A_1,B_1)$ is a \emph{sub-concept} of $(A_2,B_2)$ iff $A_1 \subseteq A_2$ (equivalently, $B_2 \subseteq B_1$). Respectively, $(A_2,B_2)$ would be a \emph{super-concept} of $(A_1,B_1)$ and we say that $(A_1,B_1) \leq (A_2,B_2)$ \cite{ganter1999formal}. Then, $\BK$ and the relation $\leq$ form a complete lattice called the \emph{concept lattice}. [ link to concept lattice in appendix ]
+The idea of sub and super-concepts gives rise to a natural partial order on $\BK$. Specifically, if $(A_1,B_1)$ and $(A_2,B_2)$ are concepts in $\BK$, then $(A_1,B_1)$ is a \emph{sub-concept} of $(A_2,B_2)$ iff $A_1 \subseteq A_2$ (equivalently, $B_2 \subseteq B_1$). Respectively, $(A_2,B_2)$ would be a \emph{super-concept} of $(A_1,B_1)$ and we say that $(A_1,B_1) \leq (A_2,B_2)$ \cite{ganter1999formal}. Then, $\BK$ and the relation $\leq$ form a complete lattice called the \emph{concept lattice}. For an example, refer to \cref{figure: concept lattice}.
 
 Previously, it was mentioned that contexts of a reasonable size have a tidy representation in the form of a cross-table. In case of larger contexts, the concept lattice can instead be inferred from \textit{attribute implications} \cite{ganter1999formal,ganter2016conceptual}.
 %
 \begin{definition}
     \label[definition]{definition: implication over M}
-    Let $M$ be an arbitrary attribute-set. An \emph{implication} over $M$ takes the form $B_1 \rightarrow B_2$ where $B_1, B_2 \subseteq M$. Another set $C \subseteq M$, \emph{respects} the implication iff $B_1 \not \subseteq C$ or $B_2 \subseteq C$. Then, $C \vDash B_1 \rightarrow B_2$. $C$ \emph{respects a set} of $\mathcal{L}$ implications if it respects every implication in $\mathcal{L}$.
+    Let $M$ be an arbitrary attribute-set. An \emph{implication} over $M$ takes the form $B_1 \rightarrow B_2$ where $B_1, B_2 \subseteq M$. Another set $C \subseteq M$, \emph{respects} the implication iff $B_1 \not \subseteq C$ or $B_2 \subseteq C$. Then, $C \vDash B_1 \rightarrow B_2$. $C$ \emph{respects a set} of implications  $\mathcal{L}$ if it respects every implication in $\mathcal{L}$.
 \end{definition}
 %
 \textit{Respecting} an implication can be generalised to the notion of \textit{validity} \wrt a formal context.
@@ -106,7 +106,7 @@ If $\mathcal{L}$ is the set of all implications valid in a formal context, $\FC$
 % %
 % If $\mathcal{C}n$ is a Tarskian consequence operator, then it satisfies
 % \begin{align}
-%      & \text{Monotonocity:} & \; \textit{if } \; \Gamma \subseteq \Gamma'  \; \text{then} \; \mathcal{C}n(\Gamma) \subseteq \mathcal{C}n(\Gamma' ) \\
+%      & \text{monotonicity:} & \; \textit{if } \; \Gamma \subseteq \Gamma'  \; \text{then} \; \mathcal{C}n(\Gamma) \subseteq \mathcal{C}n(\Gamma' ) \\
 %      & \text{Idempotence:}  & \; \mathcal{C}n(\Gamma) = \mathcal{C}n(\mathcal{C}n(\Gamma))                                                         \\
 %      & \text{Inclusion:}    & \; \Gamma \subseteq \mathcal{C}n(\Gamma)
 % \end{align}
@@ -114,23 +114,48 @@ If $\mathcal{L}$ is the set of all implications valid in a formal context, $\FC$
 \subsection{KLM-Style Non-monotonic Reasoning}
 \label{subsection: non-monotonic reasoning}
 
-In \cite{shoham1987nonmonotonic,shoham1987reasoning}, Shoham developed a semantic framework for introducing non-monotonicity, which he called \textit{preferential reasoning}. The style of reasoning is based on the idea that an ordering can be imposed on the valuations of a knowledge base, expressing that some valuations are preferred to others. One might, for example, argue that a world in which pigs fly is worthy of less consideration than one where they do not.
+In \cite{shoham1987nonmonotonic,shoham1987reasoning}, Shoham developed a semantic framework for non-monotonicity, which he called \textit{preferential reasoning}. The style of reasoning is based on the idea that an ordering can be imposed on the valuations of a knowledge base, expressing that some valuations are preferred to others. One might, for example, argue that a world in which pigs fly is worthy of less consideration than one where they do not.
 
 %
 In the classical setting, $\alpha \vDash \beta$ means that all models of $\alpha$ are also models of $\beta$. A corollary of this is that $\alpha \wedge \gamma \vDash \beta$, which implies monotonicity. Under preferential reasoning, $\alpha \vDash_\sqsubset \beta$ does not enforce the preferred models of $\alpha \wedge \gamma$ to be models of $\beta$, thus constituting a non-monotonic consequence \cite{shoham1987nonmonotonic}.
 
-Independently, Kraus, Lehmann, and Magidor introduced systems of non-monotonic reasoning as consequence relations, these have since been unified under the \textit{KLM framework}. The central contribution of \cite{kraus1990nonmonotonic} is \textit{system P}: a preferential consequence relation who's semantics are a variation of Shoham's preferential reasoning. A preferential consequence relation satisfies certain properties, called the \textit{KLM postulates}.\footnote{Further discussion of these postulates can be found in \cite{kraus1990nonmonotonic}} Of particular interest is \textit{cautious monotonicity}, which stipulates that new knowledge—which could already be inferred—cannot invalidate previous conclusions. Put plainly, only genuinely new information should cause retraction of existing information \cite{kraus1990nonmonotonic,kaliski2020overview}.
+Independently, Kraus, Lehmann, and Magidor \cite{kraus1990nonmonotonic} introduced systems of non-monotonic reasoning as consequence relations, these have since been unified under the \textit{KLM framework}. The central contribution of \cite{kraus1990nonmonotonic} is \textit{system P}: a preferential consequence relation who's semantics are a variation of Shoham's preferential reasoning. A preferential consequence relation satisfies certain properties, called the \textit{KLM postulates}.\footnote{Further discussion of these postulates can be found in \cite{kraus1990nonmonotonic}} Of particular interest is \textit{cautious monotonicity}, which stipulates that new knowledge—which could already be inferred—cannot invalidate previous conclusions. Put plainly, only genuinely new information should cause retraction of existing information \cite{kraus1990nonmonotonic,kaliski2020overview}.
 
-Later, Lehmann and Magidor \cite{lehmann1994what} introduced the stronger  \textit{rational consequence relation}, which  satisfies all the properties of \textit{P} and an additional property: \textit{rational monotonicity}. Rational monotonicity says that new information which is consistent with existing knowledge should not lead to the retraction of prior inferences. \textit{Ranked interpretations} provide a semantic characterisation of a rational consequence relation.
+Later, Lehmann and Magidor \cite{lehmann1994what} introduced the stronger  \textit{rational consequence relation}, which  satisfies all the properties of \textit{P} and an additional property: \textit{rational monotonicity}. Rational monotonicity says that new information which is consistent with existing knowledge should not lead to the retraction of prior inferences. \textit{Ranked interpretations} lead to a semantic characterisation of a rational consequence relation.
 
 \begin{definition}
     \label[definition]{definition: ranked interpretations}
     A \emph{ranked interpretation} is a function $\mathsf{R} : \mathcal{U} \mapsto \mathcal{N} \cup \infty$ \st for every $n \in \mathcal{N}$ there exists a $u \in \mathcal{U}$ such that $\mathsf{R}(u) = n$. Then, there exists $u' \in \mathcal{U}$ \st $\mathsf{R}(u') = n'$ with $0 \leq n' < n$
 \end{definition}
 
-Following the intuition of preferential reasoning, for two valuations, $v,v'$, $v$ is regarded as being representative of a more typical (i.e., preferable, less exceptional) state of affairs if $\mathsf{R}(v) < \mathsf{R}(v')$ \cite{lehmann1994what}. A ranked interpretation, $\mathsf{R}$, defines a rational consequence relation $\twiddle_\mathsf{R}$. For $\alpha \twiddle_\mathsf{R} \beta$, we define $\llbracket \alpha \rrbracket^\mathsf{R} \coloneq \{u \in \mathcal{U} \mid u \Vdash \alpha\}$. Then, the conditional holds iff for all minimal valuations $v \in \llbracket \alpha \rrbracket^\mathsf{R}$, $v \Vdash \beta$.
+Following the intuition of preferential reasoning, for two valuations, $v,v'$, $v$ is regarded as being representative of a more typical (i.e., preferable, less exceptional) state of affairs if $\mathsf{R}(v) < \mathsf{R}(v')$ \cite{lehmann1994what}. A ranked interpretation, $\mathsf{R}$, induces a rational consequence relation $\twiddle_\mathsf{R}$. For $\alpha \twiddle_\mathsf{R} \beta$, we define $\llbracket \alpha \rrbracket^\mathsf{R} \coloneq \{u \in \mathcal{U} \mid u \Vdash \alpha\}$. Then, the conditional, $\alpha \twiddle_\mathsf{R} \beta$, holds iff for all minimal valuations $v \in \llbracket \alpha \rrbracket^\mathsf{R}$, $v \Vdash \beta$.
 
-What remains is to describe a process of non-monotonic entailment which is consistent with pattern of reasoning described by rational consequence relations.
+
+What remains is to describe a process of non-monotonic entailment which is consistent with the pattern of reasoning given by rational consequence relations. Rational closure was introduced in \cite{lehmann1994what} as a definition for non-monotonic entailment. We borrow the following description from Giordano et al. \cite{giordano2015semantic}.
+
+\begin{definition}
+    \label{definition: exceptional}
+    Let $\mathcal{K}$ be a knowledge base, and $\alpha$ a propositional formula. $\alpha$ Is \textit{exceptional} in $\mathcal{K}$ iff $\mathcal{K} \models \top \twiddle \neg \alpha$. A conditional formula $\alpha \twiddle \beta$ is \textit{exceptional} in $\mathcal{K}$ iff the antecedent is exceptional. The set of exceptional formulae in $\mathcal{K}$ is denoted as $E(\mathcal{K})$.
+\end{definition}
+
+For a set of defeasible formulae, $\mathcal{K}$, we construct a sequence of subsets $C_0,\ldots, C_n$ where $C_0 = \mathcal{K}$, and when $i>0$ the set $C_i = E(C_{i-1})$. In essence, each subsequent set holds the formulae exceptional in the previous set. Since $\mathcal{K}$ is finite, either there exists an $n$ where $C_n = \emptyset$ or for all $n' > n$ $C_n' = Cn$ \cite{giordano2015semantic}. A formula $\alpha$ is given rank $i$, ($R(\alpha)=i$), where $i$ is the smallest number for which $\alpha$ is not exceptional in $C_i$.
+
+The rational closure $\overline{\mathcal{K}}$ of $\mathcal{K}$ is then the set of formulae $\alpha \twiddle \beta$ such that $R(\alpha) < R(\alpha \land \neg \beta)$ or where $R(\alpha)$ does not exist.
+
+
+% What remains is to describe a process of non-monotonic entailment which is consistent with pattern of reasoning described by rational consequence relations. This was defined algorithmically in \cite{lehmann1994what} where formulae in a defeasible knowledge base $\mathcal{K}$ are assigned a ranking determined by the exceptionality of their antecedents.
+
+
+
+% The rational closure, $\overline{\mathcal{K}}$, of $\mathcal{K}$ is the set of all defeasible statements $\alpha \twiddle \beta$ such that $\mathsf{R}(\alpha) < \mathsf{R}(\alpha \land \neg \beta)$ or $\alpha$ has no rank \cite{lehmann1994what,giordano2015semantic}.
+% %
+
+% %
+% For a set of defeasible formulae, $\mathcal{K}$ we can define a sequence of subsets $C_0,\ldots, C_n$ such that $C_0 = \mathcal{K}$ and for $i > 0$ we have $C_i = E(C_{i-1})$.
+
+
+% Using this notion of exceptionality, a set $\mathcal{K}$ of defeasible formulae can be partitioned into subsets $R_0, \ldots, R_n$ with $R_i = E(R_{i-1})$ when $i > 0$ and $R_0 = \mathcal{K}$. A formula $\alpha$ is then in rank $i$ if $R_i$ is the lowest partition for which $\alpha$ is not exceptional.
+
 
 
 % For a ranked intereptation $\mathsf{R}$, $\twiddle_\mathsf{R}$ is a rational consequence relation where $\alpha \twiddle_\mathsf{R} \beta$ iff for all minimal valuations which satisfy $\alpha$, $\beta$ is also satisfied.
