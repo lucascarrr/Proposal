@@ -20,14 +20,14 @@
         \node[concept] (terrestrial) at (-2,6) {};
         \node[label_above] at (terrestrial.north) {Terrestrial};
         \node[concept] (eggs) at (0,6) {};
-        \node[label_above] at (eggs.north) {Lays Eggs};
+        \node[label_above] at (eggs.north) {Oviparous};
         \node[concept] (young) at (2,6) {};
-        \node[label_above] at (young.north) {Live Young};
+        \node[label_above] at (young.north) {Viviparous};
         \node[concept] (aerial) at (4,6) {};
         \node[label_above] at (aerial.north) {Aerial};
 
         % Middle level - classifications
-        \node[concept] (aves) at (-3,4) {};
+        \node[concept,fill=blue] (aves) at (-3,4) {};
         \node[label_above] at (aves.north) {Aves};
 
         \node[concept] (mid_empty) at (1,4) {};
@@ -46,7 +46,7 @@
         \node[label_below] at (chameleon.south) {Chameleon};
         \node[concept] (bat) at (4,2) {};
         \node[label_below] at (bat.south) {Bat};
-        \node[concept] (crow) at (6,2) {};
+        \node[concept,fill=orange] (crow) at (6,2) {};
         \node[label_below] at (crow.south) {Crow | Swallow};
 
         % Bottom level
